@@ -12,6 +12,31 @@ class Category(models.Model):
         verbose_name = 'Категория'
         verbose_name_plural = 'Категории'
 
+
+
+class CarMark(models.Model):
+    car_mark = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.car_mark
+
+    class Meta:
+        verbose_name = 'CarMark'
+        verbose_name_plural = 'CarMark'
+
+
+
+class CarModel(models.Model):
+    car_model = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.car_model
+
+    class Meta:
+        verbose_name = 'CarModel'
+        verbose_name_plural = 'CarModel'
+
+
 class Car(Category):
 
     date_category = {
@@ -21,8 +46,6 @@ class Car(Category):
         'after_2010': 2010,
     }
 
-    marka = models.CharField(max_length=255)
-    model = models.CharField(max_length=255)
     price = models.SmallIntegerField()
     year = models.SmallIntegerField()
     name = models.CharField(max_length=255)
