@@ -23,5 +23,5 @@ class AdminCategory(admin.ModelAdmin):
 
 @admin.register(Car)
 class AdminCategory(admin.ModelAdmin):
-    list_display = ('id', 'price', 'year', 'name')
+    list_display = ('id', 'price', 'year', 'name', 'car_cat', 'car_mrk', 'car_mdl')
     list_filter = ('price', 'year', 'name')

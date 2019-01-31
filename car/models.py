@@ -3,10 +3,10 @@ from django.db import models
 # Create your models here.
 
 class Category(models.Model):
-    category = models.CharField(max_length=255)
+    category = models.CharField(max_length=255, verbose_name='категория')
 
-    def __repr__(self):
-        return self.__str__()
+    def __str__(self):
+        return self.category
 
     class Meta:
         verbose_name = 'Категория'
@@ -15,7 +15,7 @@ class Category(models.Model):
 
 
 class CarMark(models.Model):
-    car_mark = models.CharField(max_length=255)
+    car_mark = models.CharField(max_length=255, verbose_name='marka avto')
 
     def __str__(self):
         return self.car_mark
@@ -27,7 +27,7 @@ class CarMark(models.Model):
 
 
 class CarModel(models.Model):
-    car_model = models.CharField(max_length=255)
+    car_model = models.CharField(max_length=255, verbose_name='model avto')
 
     def __str__(self):
         return self.car_model
@@ -37,7 +37,7 @@ class CarModel(models.Model):
         verbose_name_plural = 'CarModel'
 
 
-class Car(Category):
+class Car(models.Model):
 
     date_category = {
         'before_1990': 1990,
@@ -50,7 +50,9 @@ class Car(Category):
     year = models.SmallIntegerField()
     name = models.CharField(max_length=255)
 
-    car_category = models.ForeignKey(Category, verbose_name='Категория', related_name='categories', on_delete=models.CASCADE)
+    car_cat = models.ForeignKey(Category, verbose_name='Категория', related_name='categories', on_delete=models.CASCADE)
+    car_mrk = models.ForeignKey(CarMark, verbose_name='Marka', related_name='car_marks', on_delete=models.CASCADE)
+    car_mdl = models.ForeignKey(CarModel, verbose_name='Models', related_name='car_models', on_delete=models.CASCADE)
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)  # Call the "real" save() method.
