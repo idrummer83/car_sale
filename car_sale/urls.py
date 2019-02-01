@@ -22,4 +22,5 @@ from car import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'^$', views.cars_list),
+    url(r'^add-form/$', views.car_form),
 ]

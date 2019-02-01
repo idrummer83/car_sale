@@ -39,13 +39,6 @@ class CarModel(models.Model):
 
 class Car(models.Model):
 
-    date_category = {
-        'before_1990': 1990,
-        '1990-2000': 2000,
-        '2000-2010': 2010,
-        'after_2010': 2010,
-    }
-
     price = models.SmallIntegerField()
     year = models.SmallIntegerField()
     name = models.CharField(max_length=255)
@@ -53,9 +46,6 @@ class Car(models.Model):
     car_cat = models.ForeignKey(Category, verbose_name='Категория', related_name='categories', on_delete=models.CASCADE)
     car_mrk = models.ForeignKey(CarMark, verbose_name='Marka', related_name='car_marks', on_delete=models.CASCADE)
     car_mdl = models.ForeignKey(CarModel, verbose_name='Models', related_name='car_models', on_delete=models.CASCADE)
-
-    def save(self, *args, **kwargs):
-        super().save(*args, **kwargs)  # Call the "real" save() method.
 
     class Meta:
         verbose_name = 'Автомобиль'
