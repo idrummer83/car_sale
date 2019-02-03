@@ -10,18 +10,18 @@ class AdminCategory(admin.ModelAdmin):
 
 
 @admin.register(CarMark)
-class AdminCategory(admin.ModelAdmin):
+class AdminCarMark(admin.ModelAdmin):
     list_display = ('id', 'car_mark')
     list_filter = ('car_mark',)
 
 
 @admin.register(CarModel)
-class AdminCategory(admin.ModelAdmin):
+class AdminCarModel(admin.ModelAdmin):
     list_display = ('id', 'car_model')
     list_filter = ('car_model',)
 
 
 @admin.register(Car)
-class AdminCategory(admin.ModelAdmin):
-    list_display = ('id', 'price', 'year', 'name', 'car_cat', 'car_mrk', 'car_mdl')
+class AdminCar(admin.ModelAdmin):
+    list_display = ('id', 'price', 'year', 'name', 'car_mrk', 'car_mdl')
     list_filter = ('price', 'year', 'name')
