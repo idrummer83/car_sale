@@ -1,4 +1,11 @@
 
 $(document).ready(function () {
-    $('#my-table').dynatable();
+    $('#sorting').dynatable({
+        features: {
+          paginate: false,
+          recordCount: false,
+          // sorting: false,
+          search: false
+        },
+    });
 });

@@ -1,5 +1,4 @@
 from django.shortcuts import render
-from django.http import HttpResponseRedirect
 from car.models import *
 from car.forms import CarAddForm
 
@@ -13,24 +12,30 @@ def cars_list(request):
         'car_list': car_list,
     }
 
-    return render(request, 'base.html', context)
+    return render(request, 'car_list.html', context)
 
 
 def car_form(request):
-    # if this is a POST request we need to process the form data
     if request.method == 'POST':
-        print(request.POST['year'])
-        # create a form instance and populate it with data from the request:
         form = CarAddForm(request.POST)
-        # check whether it's valid:
         if form.is_valid():
-            if int(request.POST['year']) < 1990:
-                Car.car_cat = 'do 90'
-            else:
-                Car.car_cat = 'posle 90'
-            car = form.save(commit=False)
-            car.save()
-            return render(request, 'car_list.html')
+            year = form.cleaned_data['year']
+            price = form.cleaned_data['price']
+            name = form.cleaned_data['name']
+            car_mrk = form.cleaned_data['car_mrk']
+            car_mdl = form.cleaned_data['car_mdl']
+
+            cat = Category.objects.all()
+            car_category = ''
+            for i in cat:
+                if int(year) <= i.max_date and int(year) >= i.min_date:
+                    car_category = i.category
+
+            qwe = Car(
+                year = year,price=price,name=name,car_cat=car_category,car_mrk=car_mrk,car_mdl=car_mdl
+            )
+            qwe.save()
+            return render(request, 'thank_you.html')
 
     else:
         form = CarAddForm()
