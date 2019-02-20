@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block car_list %}
+
+<div class="container mt-5">
+    <div class="row">
+        <table id="sorting" class="table table-bordered mb-5">
+            <thead>
+                <tr>
+                    <th data-dynatable-column="category">Категория</th>
+                    <th data-dynatable-column="car_mark">Марка</th>
+                    <th data-dynatable-column="car_model">Модель</th>
+                    <th data-dynatable-column="car_price">Цена</th>
+                    <th data-dynatable-column="car_year">Год выпуска</th>
+                    <th data-dynatable-column="user_name">Имя владельца</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for car in car_list %}
+                    <tr>
+                        <td class="col-2">{{ car.car_cat }}</td>
+                        <td class="col-2">{{ car.car_mrk }}</td>
+                        <td class="col-2">{{ car.car_mdl }}</td>
+                        <td class="col-2">{{ car.price }}</td>
+                        <td class="col-2">{{ car.year}}</td>
+                        <td class="col-2">{{ car.name }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="">
+            <a class="btn btn-primary" href="{% url 'car_form' %}">Добавить автомобиль</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

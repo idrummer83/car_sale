@@ -1,4 +1,8 @@
 from django.shortcuts import render
+from django.core import serializers
+from django.http import HttpResponse
+
+
 from car.models import *
 from car.forms import CarAddForm
 
@@ -40,3 +44,9 @@ def car_form(request):
     else:
         form = CarAddForm()
     return render(request, 'car_form_add.html', {'form': form})
+
+
+def rest(request):
+    my_model = Car.objects.all()
+    response = serializers.serialize("json", my_model)
+    return HttpResponse(response, content_type='application/json')

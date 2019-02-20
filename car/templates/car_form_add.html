@@ -1,0 +1,17 @@
+
+{% extends 'base.html' %}
+
+{% block car_add %}
+
+    <form method="post" class="mt-5">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <button type="submit" class="text-uppercase">Добавить</button>
+    </form>
+
+    <div>
+        <a class="btn btn-primary mt-5" href="{% url 'main_page' %}">Назад к списку</a>
+    </div>
+
+{% endblock %}
