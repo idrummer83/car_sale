@@ -18,10 +18,11 @@ from django.urls import path
 from django.conf.urls import url, include
 
 from car import views
-
+from django.conf.urls.static import static
+from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'^$', views.cars_list, name='main_page'),
     url(r'^add-form/$', views.car_form, name='car_form'),
     url(r'^get_rest/$', views.rest)
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

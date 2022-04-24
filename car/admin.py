@@ -25,3 +25,9 @@ class AdminCarModel(admin.ModelAdmin):
 class AdminCar(admin.ModelAdmin):
     list_display = ('id', 'price', 'year', 'name', 'car_mrk', 'car_mdl')
     list_filter = ('price', 'year', 'name')
+
+@admin.register(Photo)
+class AdminPhoto(admin.ModelAdmin):
+    list_display = ('title', 'photo', 'car', 'created_at')
+    list_filter = ('title', 'car', 'created_at')
+

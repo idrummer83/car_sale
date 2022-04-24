@@ -2,10 +2,10 @@
 
 {% block car_list %}
 
-<div class="container mt-5">
-    <div class="row">
-        <table id="sorting" class="table table-bordered mb-5">
-            <thead>
+    <div class="container mt-5">
+        <div class="row">
+            <table id="sorting" class="table table-bordered mb-5">
+                <thead>
                 <tr>
                     <th data-dynatable-column="category">Категория</th>
                     <th data-dynatable-column="car_mark">Марка</th>
@@ -13,25 +13,33 @@
                     <th data-dynatable-column="car_price">Цена</th>
                     <th data-dynatable-column="car_year">Год выпуска</th>
                     <th data-dynatable-column="user_name">Имя владельца</th>
+                    <th data-dynatable-column="photo">Фото</th>
                 </tr>
-            </thead>
-            <tbody>
+                </thead>
+                <tbody>
                 {% for car in car_list %}
                     <tr>
                         <td class="col-2">{{ car.car_cat }}</td>
                         <td class="col-2">{{ car.car_mrk }}</td>
                         <td class="col-2">{{ car.car_mdl }}</td>
                         <td class="col-2">{{ car.price }}</td>
-                        <td class="col-2">{{ car.year}}</td>
+                        <td class="col-2">{{ car.year }}</td>
                         <td class="col-2">{{ car.name }}</td>
+                        <td>
+                            {% for photo in car.photo_set.all %}
+{#                                {{ photo.photo }}#}
+                                <img width="100" src="{{ photo.photo.url }}" alt="img">
+                            {% endfor %}
+                        </td>
                     </tr>
                 {% endfor %}
-            </tbody>
-        </table>
+                </tbody>
 
-        <div class="">
-            <a class="btn btn-primary" href="{% url 'car_form' %}">Добавить автомобиль</a>
+            </table>
+
+            <div class="">
+                <a class="btn btn-primary" href="{% url 'car_form' %}">Добавить автомобиль</a>
+            </div>
         </div>
     </div>
-</div>
 {% endblock %}
