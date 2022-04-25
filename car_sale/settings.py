@@ -15,7 +15,6 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
@@ -25,11 +24,13 @@ SECRET_KEY = '^=f&n@1^d^$zco=_rn5&8kl&h5rljk&bhnmuu1fovstw+c^tx8'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+# Хосты на котором сейчас запущен сервер
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
+
+# Все загруженные приложения включая созданные
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -40,6 +41,7 @@ INSTALLED_APPS = [
     'car.apps.CarConfig',
 ]
 
+# мидлваре это приложения через которые проходит каждый запрос. Включает проверку на безопасность и тд
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -52,6 +54,8 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'car_sale.urls'
 
+
+# Пути где djagno будет искать шаблоны
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -71,9 +75,10 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'car_sale.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
+
+# Подключение базы данных
 
 DATABASES = {
     'default': {
@@ -82,10 +87,10 @@ DATABASES = {
     }
 }
 
-
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
 
+# Валидация данных при авторизации
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -101,10 +106,10 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
 
+# Язык админ панели
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
@@ -115,14 +120,16 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
+# Пути сохранения статических фалов типа js, css и тд
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'car_sale/static/'),
 )
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# Пути сохранения медиа файлов(фото, видео и тд)
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'

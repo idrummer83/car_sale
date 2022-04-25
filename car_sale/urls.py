@@ -13,16 +13,23 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf import settings
+from django.conf.urls import url
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path
-from django.conf.urls import url, include
 
 from car import views
-from django.conf.urls.static import static
-from django.conf import settings
+
+
+# Каждый url в urlpatterns принимает три аргумента
+# 1. ссылку на страницу
+# 2. функция, которая будет вызываться при переходе на эту ссылку
+# 3. имя ссылки для быстрого обращения
+
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    url(r'^$', views.cars_list, name='main_page'),
-    url(r'^add-form/$', views.car_form, name='car_form'),
-    url(r'^get_rest/$', views.rest)
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+                  path('admin/', admin.site.urls),
+                  url(r'^$', views.cars_list, name='main_page'),
+                  url(r'^add-form/$', views.car_form, name='car_form'),
+                  url(r'^get_rest/$', views.rest)
+              ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

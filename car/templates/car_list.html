@@ -27,7 +27,7 @@
                         <td class="col-2">{{ car.name }}</td>
                         <td>
                             {% for photo in car.photo_set.all %}
-{#                                {{ photo.photo }}#}
+                                {#                                {{ photo.photo }}#}
                                 <img width="100" src="{{ photo.photo.url }}" alt="img">
                             {% endfor %}
                         </td>
